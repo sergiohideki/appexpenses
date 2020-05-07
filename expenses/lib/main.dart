@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import './models/transaction.dart';
+import 'package:intl/intl.dart';
 
 main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+    );
   }
 }
 
@@ -76,7 +79,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          transaction.date.toString(),
+                          DateFormat('d MMM y').format(transaction.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
