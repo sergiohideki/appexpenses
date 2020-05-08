@@ -31,7 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
-
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
@@ -43,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    Navigator.of(context).pop(); // fechando o modal
   }
 
   _openTransationFormModal(BuildContext context) {
