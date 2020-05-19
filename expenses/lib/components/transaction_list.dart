@@ -17,18 +17,15 @@ class TransactionList extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(
                     // espaçamento entre os componentes
-                    height: constraints.maxHeight * 0.05,
+                    height: 20,
                   ),
-                  Container(
-                    height: constraints.maxHeight * 0.3,
-                    child: Text(
-                      'Não possui nenhuma transação cadastrada',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
+                  Text(
+                    'Não possui nenhuma transação cadastrada',
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(
                     // espaçamento entre os componentes
-                    height: constraints.maxHeight * 0.05,
+                    height: 20,
                   ),
                   Container(
                     height: constraints.maxHeight * 0.6,
