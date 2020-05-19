@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'dart:math';
+import 'dart:io';
+
 import 'models/transaction.dart';
 import 'components/chart.dart';
 import 'components/transaction_list.dart';
@@ -93,8 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    bool isLandscape =
-        mediaQuery.orientation == Orientation.landscape;
+    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text('Despesas Pessoais'),
       actions: <Widget>[
@@ -129,7 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   children: <Widget>[
               //     Text('Exibir Gráfico'),
-              //     Switch(
+              //     // adaptive detecta a plataforma se é iOS ou android
+              //     Switch.adaptive(
+              //         activeColor: Theme.of(context).accentColor,
               //         value: _showChart,
               //         onChanged: (value) {
               //           setState(() {
@@ -138,11 +140,11 @@ class _MyHomePageState extends State<MyHomePage> {
               //         }),
               //   ],
               // ),
-            if (_showChart || !isLandscape)
-              Container(
-                height: availableHeight * (isLandscape ? 0.8 : 0.3),
-                child: Chart(_recentTransactions),
-              ),
+              if (_showChart || !isLandscape)
+                Container(
+                  height: availableHeight * (isLandscape ? 0.8 : 0.3),
+                  child: Chart(_recentTransactions),
+                ),
             if (!_showChart || !isLandscape)
               Container(
                 height: availableHeight * (isLandscape ? 1 : 0.7),
@@ -151,10 +153,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _openTransationFormModal(context),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => _openTransationFormModal(context),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
