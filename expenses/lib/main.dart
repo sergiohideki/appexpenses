@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _openTransationFormModal(BuildContext context) {
+  _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -105,7 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
-    final chartList = Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
+    final chartList =
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
 
     final actions = <Widget>[
       if (isLandscape)
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       _getIconButton(
         Platform.isIOS ? CupertinoIcons.add : Icons.add,
-        () => _openTransationFormModal(context),
+        () => _openTransactionFormModal(context),
       ),
     ];
 
@@ -145,27 +146,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandscape)
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: <Widget>[
-              //     Text('Exibir Gráfico'),
-              //     // adaptive detecta a plataforma se é iOS ou android
-              //     Switch.adaptive(
-              //         activeColor: Theme.of(context).accentColor,
-              //         value: _showChart,
-              //         onChanged: (value) {
-              //           setState(() {
-              //             _showChart = value;
-              //           });
-              //         }),
-              //   ],
-              // ),
-              if (_showChart || !isLandscape)
-                Container(
-                  height: availableHeight * (isLandscape ? 0.8 : 0.3),
-                  child: Chart(_recentTransactions),
-                ),
+            // if (isLandscape)
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     Text('Exibir Gráfico'),
+            //     // adaptive detecta a plataforma se é iOS ou android
+            //     Switch.adaptive(
+            //         activeColor: Theme.of(context).accentColor,
+            //         value: _showChart,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _showChart = value;
+            //           });
+            //         }),
+            //   ],
+            // ),
+            if (_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 0.8 : 0.3),
+                child: Chart(_recentTransactions),
+              ),
             if (!_showChart || !isLandscape)
               Container(
                 height: availableHeight * (isLandscape ? 1 : 0.7),
@@ -188,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ? Container()
                 : FloatingActionButton(
                     child: Icon(Icons.add),
-                    onPressed: () => _openTransationFormModal(context),
+                    onPressed: () => _openTransactionFormModal(context),
                   ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
